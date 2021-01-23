@@ -48,7 +48,7 @@ Example `recursor.conf`:
     socket-dir=/var/run
 ```
 
-Additional settings from the official configuration documentation at https://doc.powerdns.com/recursor/settings.html can be added as well.
+Additional settings from the official configuration documentation at https://doc.powerdns.com/recursor/settings.html can be added as well if needed.
 
 
 
