@@ -27,7 +27,7 @@ docker run --name pdns-rec -d -p 53:53/udp -p 53:53/tcp --restart=always hybrida
 ```
 
 
-### DNSBL support
+### Configuration Settings
 
 By default, the settings below have been configured in /etc/powerdns/recursor.conf inside the container.
 
