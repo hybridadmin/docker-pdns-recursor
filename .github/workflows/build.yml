@@ -30,7 +30,7 @@ jobs:
           context: .
           file: ./4.3.0/Dockerfile
           platforms: linux/amd64
-          push: false
+          push: true
           tags: |
             hybridadmin/pdns-recursor:4.3.0
       -
@@ -40,7 +40,7 @@ jobs:
           context: .
           file: ./4.4.0/Dockerfile
           platforms: linux/amd64
-          push: false
+          push: true
           tags: |
             hybridadmin/pdns-recursor:latest
             hybridadmin/pdns-recursor:4.4.0
