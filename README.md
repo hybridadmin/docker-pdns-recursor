@@ -1,5 +1,7 @@
 # PowerDNS Recursor Docker Image
 
+![ci](https://github.com/hybridadmin/docker-pdns-recursor/workflows/ci/badge.svg?branch=main)
+
 ## Supported tags and respective `Dockerfile` links
 
 - [`4.4.0`, `latest` (*4.4.0/Dockerfile*)](https://github.com/hybridadmin/docker-pdns-recursor/tree/main/4.4.0/Dockerfile)
