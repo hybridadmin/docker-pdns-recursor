@@ -1,6 +1,6 @@
 # PowerDNS Recursor Docker Image
 
-![ci](https://github.com/hybridadmin/docker-pdns-recursor/workflows/ci/badge.svg?branch=main)
+![ci](https://github.com/hybridadmin/docker-pdns-recursor/workflows/ci/badge.svg?branch=main) ![Docker Pulls](https://img.shields.io/docker/pulls/hybridadmin/pdns-recursor)
 
 ## Supported tags and respective `Dockerfile` links
 
