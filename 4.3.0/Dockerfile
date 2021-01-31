@@ -33,29 +33,21 @@ RUN curl https://repo.powerdns.com/FD380FBB-pub.asc -o /tmp/FD380FBB-pub.asc && 
       pdns-recursor \
       ldnsutils && \
     mkdir -p /var/run/pdns-recursor && \
-    sed -i -e 's/^#\ allow-from=.*/allow-from=0.0.0.0\/0/g' \
-        -e 's/^#\ version-string.*/version-string=Not Supported/g' \
-        -e 's/^setuid=.*/setuid=daemon/' \
-        -e 's/^setgid=.*/setgid=daemon/' \
-        -e 's/^local-address=127.0.0.1/local-address=0.0.0.0/' \
-        -e 's/^#\ max-cache-ttl=.*/max-cache-ttl=28800/g' \
-        -e 's/^#\ max-negative-ttl=.*/max-negative-ttl=3600/g' \
-        -e 's/^#\ packetcache-ttl=.*/packetcache-ttl=3600/g' \
-        -e 's/^#\ gettag-needs-edns-options=.*/gettag-needs-edns-options=yes/g' \
-        -e 's/^#\ use-incoming-edns-subnet=.*/use-incoming-edns-subnet=yes/g' \
-        -e 's/^#\ any-to-tcp=.*/any-to-tcp=yes/g' \
-        -e 's/^#\ reuseport=.*/reuseport=yes/g' \
-        -e 's/^#\ socket-dir=/socket-dir=\/var\/run/' /etc/powerdns/recursor.conf && \
     rm -rf \
         /tmp/* \
         /var/tmp/* \
         /var/lib/apt/lists/*
 
+ADD docker-entrypoint.sh /usr/bin/docker-entrypoint.sh
+
+RUN chmod a+x /usr/bin/docker-entrypoint.sh
+
 EXPOSE 53/tcp
 EXPOSE 53/udp
 
-VOLUME "/etc/powerdns/"
+WORKDIR "/etc/powerdns/"
+#VOLUME "/etc/powerdns/"
 
 HEALTHCHECK --interval=5s --timeout=3s --start-period=5s CMD drill @127.0.0.1 cloudflare.com || exit 1
-
+ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["pdns_recursor"]
