@@ -49,7 +49,7 @@ services:
 Run a container with default settings:
 
 ```console
-docker run --name pdns-rec -d -p 53:53/udp -p 53:53/tcp --restart=always hybridadmin/pdns-recursor:latest
+docker run -d -p 53:53/udp -p 53:53/tcp --restart=always hybridadmin/pdns-recursor:latest
 ```
 
 To run a container with customized settings:
