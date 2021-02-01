@@ -26,6 +26,8 @@ services:
     environment:
       - USER_ID=daemon
       - GROUP_ID=daemon
+      - SERVER_ID=disabled
+      - DNSSEC_MODE=process-no-validate
       - LOCAL_ADDRESS=0.0.0.0
       - MAX_CACHE_TTL=28800
       - MAX_NEGATIVE_TTL=3600
@@ -53,6 +55,8 @@ To run a container with customized settings:
 docker run -d --name tester_dns \
 -e USER_ID=daemon #optional \
 -e GROUP_ID=daemon #optional \
+-e SERVER_ID=disabled \
+-e DNSSEC_MODE=process-no-validate \
 -e LOCAL_ADDRESS=0.0.0.0 #optional \
 -e MAX_CACHE_TTL=28800 #optional \
 -e MAX_NEGATIVE_TTL=3600 #optional \
@@ -98,6 +102,8 @@ Additional settings from the official configuration [`documentation`](https://do
 | :----: | --- |
 | `USER_ID` | User to change to after binding to socket |
 | `GROUP_ID` | Group to change to after binding to socket |
+| `SERVER_ID` | The reply given by The PowerDNS recursor to a query for ‘id.server’  |
+| `DNSSEC_MODE` | Set the mode for DNSSEC processing, [`more info`](https://docs.powerdns.com/recursor/dnssec.html) |
 | `LOCAL_ADDRESS` | Local IP address(es) to bind to |
 | `MAX_CACHE_TTL` | Maximum number of seconds to cache an item in the DNS cache |
 | `MAX_NEGATIVE_TTL` | Maximum amount of time negative entries are cached |
