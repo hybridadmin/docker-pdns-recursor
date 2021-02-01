@@ -2,7 +2,7 @@ FROM ubuntu:focal as powerdns
 LABEL maintainer="Tinashe Chikomo"
 
 ENV NAME=pdns_recursor \
-    PDNS_RECURSOR_VERSION=4.4.0 \
+    PDNS_RECURSOR_VERSION=master \
     VERSION=1.1 \
     SUMMARY="${NAME} is a high-performance DNS recursor with built-in scripting capabilities." \
     DESCRIPTION="${NAME} is a high-performance DNS recursor with built-in scripting capabilities."
@@ -26,8 +26,8 @@ ADD ${PDNS_RECURSOR_VERSION}/pdns.list /etc/apt/sources.list.d/pdns.list
 
 ADD ${PDNS_RECURSOR_VERSION}/pdns /etc/apt/preferences.d/pdns
 
-RUN curl https://repo.powerdns.com/FD380FBB-pub.asc -o /tmp/FD380FBB-pub.asc && \
-    sudo apt-key add /tmp/FD380FBB-pub.asc  && \
+RUN curl https://repo.powerdns.com/CBC8B383-pub.asc -o /tmp/CBC8B383-pub.asc && \
+    sudo apt-key add /tmp/CBC8B383-pub.asc  && \
     set -x && \
     DEBIAN_FRONTEND=noninteractive apt-get update -qqy && apt-get install -yqq --no-install-recommends \
       pdns-recursor \

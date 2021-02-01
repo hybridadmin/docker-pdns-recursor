@@ -4,6 +4,8 @@
 
 ## Supported tags and respective `Dockerfile` links
 
+- [`master`](https://github.com/hybridadmin/docker-pdns-recursor/tree/main/master/Dockerfile)
+- [`4.5.0`](https://github.com/hybridadmin/docker-pdns-recursor/tree/main/4.5.0/Dockerfile)
 - [`4.4.0`, `latest`](https://github.com/hybridadmin/docker-pdns-recursor/tree/main/4.4.0/Dockerfile)
 - [`4.3.0`](https://github.com/hybridadmin/docker-pdns-recursor/tree/main/4.3.0/Dockerfile)
 

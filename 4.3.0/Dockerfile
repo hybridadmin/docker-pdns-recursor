@@ -22,9 +22,9 @@ RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selectio
 
 RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && apt-get install -qqy apt-utils sudo curl gnupg
 
-ADD 4.3.0/pdns.list /etc/apt/sources.list.d/pdns.list
+ADD ${PDNS_RECURSOR_VERSION}/pdns.list /etc/apt/sources.list.d/pdns.list
 
-ADD 4.3.0/pdns /etc/apt/preferences.d/pdns
+ADD ${PDNS_RECURSOR_VERSION}/pdns /etc/apt/preferences.d/pdns
 
 RUN curl https://repo.powerdns.com/FD380FBB-pub.asc -o /tmp/FD380FBB-pub.asc && \
     sudo apt-key add /tmp/FD380FBB-pub.asc  && \

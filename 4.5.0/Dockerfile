@@ -2,7 +2,7 @@ FROM ubuntu:focal as powerdns
 LABEL maintainer="Tinashe Chikomo"
 
 ENV NAME=pdns_recursor \
-    PDNS_RECURSOR_VERSION=4.4.0 \
+    PDNS_RECURSOR_VERSION=4.5.0 \
     VERSION=1.1 \
     SUMMARY="${NAME} is a high-performance DNS recursor with built-in scripting capabilities." \
     DESCRIPTION="${NAME} is a high-performance DNS recursor with built-in scripting capabilities."
