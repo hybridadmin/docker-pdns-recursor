@@ -1,8 +1,8 @@
-FROM debian:trixie-slim as powerdns
+FROM debian:bookworm-slim AS powerdns
 LABEL maintainer="Tinashe Chikomo"
 
 ENV NAME=pdns_recursor \
-    PDNS_RECURSOR_VERSION=master \
+    PDNS_RECURSOR_VERSION=4.5.0 \
     VERSION=1.1 \
     SUMMARY="${NAME} is a high-performance DNS recursor with built-in scripting capabilities." \
     DESCRIPTION="${NAME} is a high-performance DNS recursor with built-in scripting capabilities."
@@ -20,16 +20,11 @@ WORKDIR /tmp/src
 
 RUN echo 'debconf debconf/frontend select Noninteractive' | debconf-set-selections
 
-RUN DEBIAN_FRONTEND=noninteractive apt-get update -qqy && apt-get install -qqy apt-utils sudo curl gnupg
-
-ADD ${PDNS_RECURSOR_VERSION}/pdns.list /etc/apt/sources.list.d/pdns.list
-
-ADD ${PDNS_RECURSOR_VERSION}/pdns /etc/apt/preferences.d/pdns
-
-RUN curl https://repo.powerdns.com/CBC8B383-pub.asc -o /tmp/CBC8B383-pub.asc && \
-    sudo apt-key add /tmp/CBC8B383-pub.asc  && \
-    set -x && \
-    DEBIAN_FRONTEND=noninteractive apt-get update -qqy && apt-get install -yqq --no-install-recommends \
+RUN set -x && DEBIAN_FRONTEND=noninteractive apt-get update -y && apt-get install -y apt-utils sudo curl gnupg2 && \
+    echo "deb [signed-by=/etc/apt/keyrings/rec-51-pub.asc] http://repo.powerdns.com/debian bookworm-rec-51 main" | tee /etc/apt/sources.list.d/pdns.list && \
+    printf "Package: pdns-*\nPin: origin repo.powerdns.com\nPin-Priority: 600" >> /etc/apt/preferences.d/rec-51 && \
+    mkdir -p /etc/apt/keyrings && curl https://repo.powerdns.com/FD380FBB-pub.asc | sudo tee /etc/apt/keyrings/rec-51-pub.asc && \
+    apt-get update -y && apt-get install -y --no-install-recommends \
       pdns-recursor \
       ldnsutils && \
     mkdir -p /var/run/pdns-recursor && \
